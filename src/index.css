@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600&family=Fira+Code:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Colores principales */
+  --color-background: #0a0e12;
+  --color-secondary: #1a1d21;
+  --color-tertiary: #2a2e32;
+  
+  /* Acentos */
+  --color-accent-primary: #00ff41;
+  --color-accent-secondary: #9f00ff ;
+  --color-alert: #ff3e3e;
+  --color-warning: #ffcc00;
+  
+  /* Texto */
+  --color-text-primary: #e3e3e3;
+  --color-text-secondary: #b3b3b3;
+}
+
+@layer base {
+  body {
+    @apply bg-[var(--color-background)] text-[var(--color-text-primary)] font-inter;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-space-mono font-bold text-[var(--color-accent-primary)];
+  }
+  
+  h1 {
+    @apply text-4xl md:text-5xl;
+  }
+  
+  h2 {
+    @apply text-3xl md:text-4xl;
+  }
+  
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+  
+  h4 {
+    @apply text-xl md:text-2xl;
+  }
+  
+  p {
+    @apply my-4 leading-relaxed;
+  }
+  
+  a {
+    @apply text-[var(--color-accent-secondary)] hover:underline transition-all duration-300;
+  }
+  
+  code {
+    @apply font-fira-code bg-[var(--color-tertiary)] px-1 py-0.5 rounded;
+  }
+}
+
+@layer components {
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .section {
+    @apply py-16 md:py-24;
+  }
+  
+  .btn-primary {
+    @apply bg-[var(--color-accent-primary)] text-[var(--color-background)] font-bold py-2 px-6 rounded-md hover:opacity-90 transition-all duration-300 font-space-mono;
+  }
+  
+  .btn-secondary {
+    @apply border-2 border-[var(--color-accent-primary)] text-[var(--color-accent-primary)] font-bold py-2 px-6 rounded-md hover:bg-[var(--color-accent-primary)] hover:bg-opacity-10 transition-all duration-300 font-space-mono;
+  }
+  
+  .card {
+    @apply bg-[var(--color-secondary)] p-6 rounded-lg shadow-lg border border-[var(--color-tertiary)];
+  }
+  
+  .terminal-text {
+    @apply font-fira-code text-[var(--color-accent-primary)];
+  }
+  
+  .nav-link {
+    @apply text-[var(--color-text-primary)] hover:text-[var(--color-accent-primary)] transition-all duration-300;
+  }
+  
+  .nav-link.active {
+    @apply text-[var(--color-accent-primary)];
+  }
+}
+
+/* Animaciones */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink {
+  50% { border-color: transparent }
+}
+
+.typing-effect {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid var(--color-accent-primary);
+  animation: typing 3.5s steps(40, end), blink 1s step-end infinite;
+}
+
+/* Scrollbar personalizado */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-tertiary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-primary);
+}
