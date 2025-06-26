@@ -5,57 +5,61 @@
 @tailwind utilities;
 
 :root {
-  /* Colores principales */
-  --color-background: #0a0e12;
-  --color-secondary: #1a1d21;
-  --color-tertiary: #2a2e32;
-  
+  /* Colores principales estilo terminal */
+  --color-background: #0d0d0d;
+  --color-secondary: #121212;
+  --color-tertiary: #1e1e1e;
+
   /* Acentos */
-  --color-accent-primary: #00ff41;
-  --color-accent-secondary: #9f00ff ;
+  --color-accent-primary: #39ff14;
+  --color-accent-secondary: #00ffff;
   --color-alert: #ff3e3e;
-  --color-warning: #ffcc00;
-  
+  --color-warning: #ffd700;
+
   /* Texto */
-  --color-text-primary: #e3e3e3;
-  --color-text-secondary: #b3b3b3;
+  --color-text-primary: #c1ffdc;
+  --color-text-secondary: #88a39d;
 }
 
 @layer base {
   body {
     @apply bg-[var(--color-background)] text-[var(--color-text-primary)] font-inter;
   }
-  
+
   h1, h2, h3, h4, h5, h6 {
     @apply font-space-mono font-bold text-[var(--color-accent-primary)];
+    text-shadow: 0 0 4px var(--color-accent-primary);
   }
-  
+
   h1 {
     @apply text-4xl md:text-5xl;
   }
-  
+
   h2 {
     @apply text-3xl md:text-4xl;
   }
-  
+
   h3 {
     @apply text-2xl md:text-3xl;
   }
-  
+
   h4 {
     @apply text-xl md:text-2xl;
   }
-  
+
   p {
-    @apply my-4 leading-relaxed;
+    @apply my-4 leading-relaxed text-[var(--color-text-secondary)];
   }
-  
+
   a {
     @apply text-[var(--color-accent-secondary)] hover:underline transition-all duration-300;
+    text-shadow: 0 0 5px var(--color-accent-secondary);
   }
-  
+
   code {
     @apply font-fira-code bg-[var(--color-tertiary)] px-1 py-0.5 rounded;
+    color: var(--color-accent-primary);
+    text-shadow: 0 0 4px var(--color-accent-primary);
   }
 }
 
@@ -63,37 +67,46 @@
   .container {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
-  
+
   .section {
     @apply py-16 md:py-24;
   }
-  
+
+  .hero {
+    background: url('./assets/halo-helmet.png') no-repeat center;
+    background-size: cover;
+    background-blend-mode: overlay;
+  }
+
   .btn-primary {
     @apply bg-[var(--color-accent-primary)] text-[var(--color-background)] font-bold py-2 px-6 rounded-md hover:opacity-90 transition-all duration-300 font-space-mono;
+    box-shadow: 0 0 12px var(--color-accent-primary);
   }
-  
+
   .btn-secondary {
     @apply border-2 border-[var(--color-accent-primary)] text-[var(--color-accent-primary)] font-bold py-2 px-6 rounded-md hover:bg-[var(--color-accent-primary)] hover:bg-opacity-10 transition-all duration-300 font-space-mono;
+    box-shadow: 0 0 6px var(--color-accent-primary);
   }
-  
+
   .card {
     @apply bg-[var(--color-secondary)] p-6 rounded-lg shadow-lg border border-[var(--color-tertiary)];
   }
-  
+
   .terminal-text {
-    @apply font-fira-code text-[var(--color-accent-primary)];
+    @apply font-fira-code text-[var(--color-accent-primary)] tracking-wide;
+    text-shadow: 0 0 6px var(--color-accent-primary), 0 0 10px var(--color-accent-primary);
   }
-  
+
   .nav-link {
     @apply text-[var(--color-text-primary)] hover:text-[var(--color-accent-primary)] transition-all duration-300;
   }
-  
+
   .nav-link.active {
     @apply text-[var(--color-accent-primary)];
   }
 }
 
-/* Animaciones */
+/* Animaciones estilo typing */
 @keyframes typing {
   from { width: 0 }
   to { width: 100% }
@@ -126,5 +139,40 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-accent-primary);
+  background: var(--color-accent-secondary);
 }
+
+/* Fondo animado estilo ruido (opcional) */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: url('https://media.giphy.com/media/oEI9uBYSzLpBK/giphy.gif') repeat;
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Glow al hacer hover en cards */
+.card:hover {
+  box-shadow: 0 0 20px var(--color-accent-primary);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
