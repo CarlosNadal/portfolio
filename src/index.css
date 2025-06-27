@@ -4,22 +4,63 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  /* Colores principales estilo terminal */
-  --color-background: #0d0d0d;
-  --color-secondary: #121212;
-  --color-tertiary: #1e1e1e;
+/* ========================
+   🖥️ Variables por Tema
+======================== */
 
-  /* Acentos */
-  --color-accent-primary: #39ff14;
+:root[data-theme='dark'] {
+  --color-background: #0a0e12;
+  --color-secondary: #1a1d21;
+  --color-tertiary: #2a2e32;
+  --color-accent-primary: #00ff41;
   --color-accent-secondary: #00ffff;
-  --color-alert: #ff3e3e;
-  --color-warning: #ffd700;
-
-  /* Texto */
-  --color-text-primary: #c1ffdc;
-  --color-text-secondary: #88a39d;
+  --color-text-primary: #e3e3e3;
+  --color-text-secondary: #b3b3b3;
 }
+
+:root[data-theme='light'] {
+  --color-background: #f1f2f6;           
+  --color-secondary: #ffffff;            
+  --color-tertiary: #dcdde1;             
+  --color-accent-primary: #3742fa;       
+  --color-accent-secondary: #2f3542;     
+  --color-text-primary: #2f3542;         
+  --color-text-secondary: #57606f;       
+}
+
+/* ========================
+   📺 Efecto Scanlines
+======================== */
+
+[data-theme='dark']::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 255, 65, 0.03),
+    rgba(0, 255, 65, 0.03) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  z-index: 50;
+  mix-blend-mode: overlay;
+  animation: scanlines 1.2s linear infinite;
+}
+
+@keyframes scanlines {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-2px);
+  }
+}
+
+/* ========================
+   🧱 Estilos Base
+======================== */
 
 @layer base {
   body {
@@ -31,21 +72,10 @@
     text-shadow: 0 0 4px var(--color-accent-primary);
   }
 
-  h1 {
-    @apply text-4xl md:text-5xl;
-  }
-
-  h2 {
-    @apply text-3xl md:text-4xl;
-  }
-
-  h3 {
-    @apply text-2xl md:text-3xl;
-  }
-
-  h4 {
-    @apply text-xl md:text-2xl;
-  }
+  h1 { @apply text-4xl md:text-5xl; }
+  h2 { @apply text-3xl md:text-4xl; }
+  h3 { @apply text-2xl md:text-3xl; }
+  h4 { @apply text-xl md:text-2xl; }
 
   p {
     @apply my-4 leading-relaxed text-[var(--color-text-secondary)];
@@ -61,7 +91,17 @@
     color: var(--color-accent-primary);
     text-shadow: 0 0 4px var(--color-accent-primary);
   }
+  input::placeholder,
+  textarea::placeholder {
+  font-style: italic;
+  color: var(--color-text-secondary);
 }
+
+}
+
+/* ========================
+   🧩 Componentes
+======================== */
 
 @layer components {
   .container {
@@ -73,7 +113,8 @@
   }
 
   .hero {
-    background: url('./assets/halo-helmet.png') no-repeat center;
+    background: linear-gradient(rgba(0,255,0,0.1), rgba(0,0,0,0.4)),
+                url('./assets/halo-helmet.png') no-repeat center;
     background-size: cover;
     background-blend-mode: overlay;
   }
@@ -92,6 +133,11 @@
     @apply bg-[var(--color-secondary)] p-6 rounded-lg shadow-lg border border-[var(--color-tertiary)];
   }
 
+  .card:hover {
+    box-shadow: 0 0 20px var(--color-accent-primary);
+    transition: box-shadow 0.3s ease-in-out;
+  }
+
   .terminal-text {
     @apply font-fira-code text-[var(--color-accent-primary)] tracking-wide;
     text-shadow: 0 0 6px var(--color-accent-primary), 0 0 10px var(--color-accent-primary);
@@ -106,7 +152,10 @@
   }
 }
 
-/* Animaciones estilo typing */
+/* ========================
+   ⌨️ Efecto Typing
+======================== */
+
 @keyframes typing {
   from { width: 0 }
   to { width: 100% }
@@ -116,6 +165,24 @@
   50% { border-color: transparent }
 }
 
+@keyframes glowline {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0);
+  }
+}
+
+.line-animate {
+  animation: glowline 0.6s ease-out forwards;
+}
+
+
 .typing-effect {
   display: inline-block;
   overflow: hidden;
@@ -124,7 +191,60 @@
   animation: typing 3.5s steps(40, end), blink 1s step-end infinite;
 }
 
-/* Scrollbar personalizado */
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+.animate-fadeOut {
+  animation: fadeOut 3.5s ease forwards;
+}
+
+@keyframes glitch {
+  0% {
+    clip-path: inset(0 0 0 0);
+    transform: translate(0);
+  }
+  20% {
+    clip-path: inset(10% 0 85% 0);
+    transform: translate(-2px, -2px);
+  }
+  40% {
+    clip-path: inset(15% 0 70% 0);
+    transform: translate(2px, 2px);
+  }
+  60% {
+    clip-path: inset(10% 0 85% 0);
+    transform: translate(-2px, 2px);
+  }
+  80% {
+    clip-path: inset(15% 0 70% 0);
+    transform: translate(2px, -2px);
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    transform: translate(0);
+  }
+}
+
+.btn-primary.glitch:hover {
+  animation: glitch 0.5s infinite;
+  color: var(--color-accent-secondary);
+  text-shadow:
+    2px 0 var(--color-accent-primary),
+    -2px 0 var(--color-accent-primary);
+}
+
+/* ========================
+   🖱️ Scrollbar Custom
+======================== */
+
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -142,7 +262,10 @@
   background: var(--color-accent-secondary);
 }
 
-/* Fondo animado estilo ruido (opcional) */
+/* ========================
+   🧪 Efecto de Ruido (CRT)
+======================== */
+
 body::after {
   content: '';
   position: fixed;
@@ -154,25 +277,16 @@ body::after {
   z-index: 9999;
 }
 
+/* ========================
+   📦 Fade In Animation
+======================== */
+
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .fade-in-up {
   opacity: 0;
   animation: fadeInUp 0.8s ease-out forwards;
 }
-
-/* Glow al hacer hover en cards */
-.card:hover {
-  box-shadow: 0 0 20px var(--color-accent-primary);
-  transition: box-shadow 0.3s ease-in-out;
-}
-

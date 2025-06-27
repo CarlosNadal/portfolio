@@ -1,51 +1,45 @@
 import React from 'react';
+import LiveLogs from './LiveLogs';
 
 const Hero = () => {
   return (
     <section id="home" className="min-h-screen flex items-center relative overflow-hidden">
-      {/* Fondo estilo Matrix */}
+      {/* Fondo con efecto matrix */}
       <div className="absolute inset-0 z-0 opacity-10">
-        <div className="matrix-background"></div>
+        <div className="matrix-background" />
       </div>
 
-      {/* Contenido principal */}
       <div className="container mx-auto px-4 z-10">
-        <div className="max-w-3xl">
-          {/* Prompt terminal */}
-          <p className="terminal-text text-sm mb-2">
-            user@carlos-portfolio:~$
-          </p>
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-8 items-center">
+          {/* Columna izquierda */}
+          <div className="max-w-xl">
+            <h1 className="text-text-primary mb-2">
+              <span className="typing-effect">Carlos Nadal</span>
+            </h1>
+            <h2 className="text-accent-secondary text-2xl md:text-3xl mb-6 font-space-mono">
+              Cybersecurity Analyst
+            </h2>
+            <p className="text-text-secondary text-lg md:text-xl mb-8 max-w-2xl">
+              I scan threats so you don't have to. Defender of inboxes, breaker of phishing chains. Let's make the internet safer.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <a href="#projects" className="btn-primary">View Projects</a>
+              <a href="#contact" className="btn-secondary">Contact</a>
+            </div>
+          </div>
 
-          {/* Nombre animado */}
-          <h1 className="mb-2">
-            <span className="typing-effect text-4xl md:text-5xl text-[var(--color-accent-primary)] font-space-mono">
-              Carlos Nadal
-            </span>
-          </h1>
-
-          {/* Subtítulo */}
-          <h2 className="text-2xl md:text-3xl mb-6 font-space-mono text-[var(--color-accent-secondary)] animate-pulse">
-            Analista de Ciberseguridad
-          </h2>
-
-          {/* Descripción */}
-          <p className="text-lg md:text-xl mb-8 max-w-2xl text-[var(--color-text-secondary)]">
-            Recién graduado con especialización en ciberseguridad, apasionado por la protección de sistemas y la detección de amenazas. Dispuesto a colaborar y ganar experiencia en el campo.
-          </p>
-
-          {/* Botones */}
-          <div className="flex flex-wrap gap-4">
-            <a href="#projects" className="btn-primary">Ver Proyectos</a>
-            <a href="#contact" className="btn-secondary">Contactar</a>
+          {/* Columna derecha - LiveLogs */}
+          <div className="relative md:static flex justify-center md:block">
+            <LiveLogs />
           </div>
         </div>
       </div>
 
-      {/* Footer decorativo estilo consola */}
+      {/* Prompt de scroll */}
       <div className="absolute bottom-8 left-0 right-0 text-center">
         <div className="inline-block">
           <div className="terminal-text text-sm animate-pulse">
-            $ scroll_down --para-descubrir-más
+            $ scroll_down --to-discover-more
           </div>
         </div>
       </div>

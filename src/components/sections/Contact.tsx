@@ -1,95 +1,79 @@
 import React, { useState } from 'react';
 
 const Contact = () => {
-  const [sent, setSent] = useState(false);
-  const [timestamp, setTimestamp] = useState('');
+  const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const form = e.target;
+    const data = new FormData(form);
 
-    // Fake delay de envío (acá podrías llamar a una API real)
-    setTimeout(() => {
-      const now = new Date().toISOString().replace('T', ' ').substring(0, 19);
-      setTimestamp(now);
-      setSent(true);
-    }, 500);
+    fetch(form.action, {
+      method: form.method,
+      body: data,
+      headers: { Accept: 'application/json' },
+    })
+      .then(() => {
+        setSubmitted(true);
+        form.reset();
+
+        setTimeout(() => {
+          setSubmitted(false);
+        }, 3500);
+      })
+      .catch(() => {
+        alert('Hubo un error enviando el mensaje.');
+      });
   };
 
   return (
-    <section id="contact" className="section bg-[var(--color-secondary)]">
-      <div className="container mx-auto">
-        {/* Línea tipo terminal */}
-        <p className="terminal-text text-sm mb-4">
-          $ send-message --to="carlos.nadal" --subject="te quiero en mi equipo"
-        </p>
+    <section id="contact" className="section bg-secondary">
+      <div className="container mx-auto max-w-3xl">
+        <h2 className="text-center mb-12">Contacto</h2>
 
-        {/* Título */}
-        <h2 className="text-center mb-12 text-[var(--color-accent-primary)] font-space-mono text-3xl md:text-4xl">
-          Contacto
-        </h2>
-
-        {/* Formulario */}
         <form
           onSubmit={handleSubmit}
-          className="max-w-3xl mx-auto bg-[var(--color-tertiary)] p-8 rounded-lg shadow-glow fade-in-up space-y-6 border border-[var(--color-accent-primary)]"
-          style={{ animationDelay: '0.3s' }}
+          action="https://formsubmit.co/carlitosnadalfiuri05@gmail.com"
+          method="POST"
+          className="bg-tertiary p-6 rounded-lg shadow-glow font-fira-code text-[var(--color-accent-primary)] text-sm md:text-base"
         >
-          {/* Nombre */}
-          <div>
-            <label htmlFor="name" className="block text-sm mb-2 text-[var(--color-text-secondary)] font-fira-code">
-              Nombre:
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              className="w-full bg-[var(--color-background)] text-[var(--color-text-primary)] border border-[var(--color-tertiary)] rounded-md px-4 py-2 font-fira-code focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-primary)]"
-              placeholder="ej: Neo Anderson"
-              required
-            />
-          </div>
+          <p className="mb-4 terminal-text">$ contact --name:</p>
+          <input
+            type="text"
+            name="name"
+            required
+            placeholder="> Carlos Nadal"
+            className="w-full bg-transparent border-b border-[var(--color-accent-primary)] mb-6 px-2 py-1 outline-none placeholder-[var(--color-text-secondary)]"
+          />
 
-          {/* Email */}
-          <div>
-            <label htmlFor="email" className="block text-sm mb-2 text-[var(--color-text-secondary)] font-fira-code">
-              Email:
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              className="w-full bg-[var(--color-background)] text-[var(--color-text-primary)] border border-[var(--color-tertiary)] rounded-md px-4 py-2 font-fira-code focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-primary)]"
-              placeholder="ej: trinity@matrix.org"
-              required
-            />
-          </div>
+          <p className="mb-4 terminal-text">$ contact --email:</p>
+          <input
+            type="email"
+            name="email"
+            required
+            placeholder="> carlos@email.com"
+            className="w-full bg-transparent border-b border-[var(--color-accent-primary)] mb-6 px-2 py-1 outline-none placeholder-[var(--color-text-secondary)]"
+          />
 
-          {/* Mensaje */}
-          <div>
-            <label htmlFor="message" className="block text-sm mb-2 text-[var(--color-text-secondary)] font-fira-code">
-              Mensaje:
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              rows="5"
-              className="w-full bg-[var(--color-background)] text-[var(--color-text-primary)] border border-[var(--color-tertiary)] rounded-md px-4 py-2 font-fira-code focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-primary)]"
-              placeholder="Hola Carlos, quiero proponerte un proyecto..."
-              required
-            />
-          </div>
+          <p className="mb-4 terminal-text">$ contact --message:</p>
+          <textarea
+            name="message"
+            required
+            rows="5"
+            placeholder="> Escribí tu mensaje acá..."
+            className="w-full bg-transparent border border-[var(--color-accent-primary)] px-2 py-1 outline-none placeholder-[var(--color-text-secondary)] rounded"
+          ></textarea>
 
-          {/* Botón */}
-          <div className="text-center">
-            <button type="submit" className="btn-primary font-fira-code">
-              &gt; enviar_mensaje
-            </button>
-          </div>
+          <button
+            type="submit"
+            className="btn-primary glitch mt-6 block ml-auto font-fira-code relative overflow-hidden"
+          >
+            Enviar Mensaje
+          </button>
 
-          {/* Respuesta estilo consola */}
-          {sent && (
-            <p className="terminal-text text-sm mt-6 text-center animate-pulse">
-              ✅ Mensaje enviado con éxito [{timestamp}]
+          {submitted && (
+            <p className="mt-4 text-accent-primary animate-fadeOut">
+              &gt;&gt; Message sent successfully!
             </p>
           )}
         </form>
