@@ -3,30 +3,53 @@ import React from 'react';
 const Skills = () => {
   const skillCategories = [
     {
-      title: "Análisis de Seguridad",
+      title: "Defensive Security",
+      icon: "🛡️",
       skills: [
-        { name: "Análisis de Vulnerabilidades", level: 80 },
-        { name: "Detección de Amenazas", level: 85 },
-        { name: "Análisis de Malware", level: 75 },
-        { name: "Monitoreo de Seguridad", level: 80 }
+        { 
+          name: "SIEM Operations", 
+          proof: [
+            "Implemented Wazuh SIEM in home lab",
+            "Analyzed 100+ alerts in Splunk during Holberton projects"
+          ],
+          tools: ["Wazuh", "Splunk", "ELK"]
+        },
+        { 
+          name: "Incident Response", 
+          proof: [
+            "Handled simulated breaches in Holberton SOC exercises",
+            "Documented forensic process for malware analysis"
+          ],
+          tools: ["Autopsy", "Volatility", "SIFT"]
+        }
       ]
     },
     {
-      title: "Herramientas y Tecnologías",
+      title: "Offensive Security",
+      icon: "⚔️",
       skills: [
-        { name: "Sistemas SIEM", level: 70 },
-        { name: "Firewalls y IDS/IPS", level: 75 },
-        { name: "Análisis Forense Digital", level: 65 },
-        { name: "Seguridad de Redes", level: 80 }
+        { 
+          name: "Penetration Testing", 
+          proof: [
+            "Completed 50+ Hack The Box challenges",
+            "Exploited OWASP Top 10 in DVWA"
+          ],
+          tools: ["Burp Suite", "Metasploit", "Nmap"]
+        }
       ]
     },
     {
-      title: "Desarrollo Seguro",
+      title: "Technical Foundations",
+      icon: "🖥️",
       skills: [
-        { name: "Programación Segura", level: 75 },
-        { name: "Pruebas de Penetración", level: 70 },
-        { name: "Automatización de Seguridad", level: 65 },
-        { name: "DevSecOps", level: 60 }
+        { 
+          name: "Network Security", 
+          proof: [
+            "Built segmented test network with pfSense",
+            "Packet analysis with Wireshark (50+ captures)"
+          ],
+          tools: ["Wireshark", "pfSense", "Cisco Packet Tracer"]
+        }
       ]
     }
   ];
@@ -34,42 +57,51 @@ const Skills = () => {
   return (
     <section id="skills" className="section">
       <div className="container mx-auto">
-        <h2 className="text-center mb-12">Habilidades Técnicas</h2>
+        <h2 className="text-center mb-12">Validated Cybersecurity Skills</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {skillCategories.map((category, index) => (
             <div key={index} className="card">
-              <h3 className="mb-6 text-center">{category.title}</h3>
+              <h3 className="text-xl mb-6 flex items-center">
+                <span className="text-2xl mr-2">{category.icon}</span>
+                {category.title}
+              </h3>
+              
               <div className="space-y-6">
                 {category.skills.map((skill, skillIndex) => (
-                  <div key={skillIndex}>
-                    <div className="flex justify-between mb-1">
-                      <span className="text-text-primary">{skill.name}</span>
-                      <span className="text-accent-secondary">{skill.level}%</span>
+                  <div key={skillIndex} className="group">
+                    <h4 className="font-medium mb-2">{skill.name}</h4>
+                    
+                    <div className="mb-3">
+                      <div className="text-sm font-semibold mb-1">Demonstrated By:</div>
+                      <ul className="space-y-2">
+                        {skill.proof.map((item, i) => (
+                          <li key={i} className="flex">
+                            <span className="text-primary mr-2">•</span>
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
                     </div>
-                    <div className="w-full bg-tertiary rounded-full h-2.5">
-                      <div 
-                        className="bg-gradient-to-r from-accent-primary to-accent-secondary h-2.5 rounded-full" 
-                        style={{ width: `${skill.level}%` }}
-                      ></div>
+                    
+                    <div>
+                      <div className="text-sm font-semibold mb-1">Tools Used:</div>
+                      <div className="flex flex-wrap gap-2">
+                        {skill.tools.map((tool, i) => (
+                          <span 
+                            key={i} 
+                            className="bg-secondary px-3 py-1 rounded-full text-xs"
+                          >
+                            {tool}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
           ))}
-        </div>
-        
-        <div className="mt-16">
-          <div className="card">
-            <h3 className="mb-6 text-center">Enfoque Profesional</h3>
-            <p className="mb-4">
-              Como analista de ciberseguridad, mi enfoque se centra en la identificación proactiva de amenazas y vulnerabilidades antes de que puedan ser explotadas. Mi formación me ha preparado para analizar sistemas desde múltiples perspectivas, implementar controles de seguridad efectivos y responder rápidamente ante incidentes.
-            </p>
-            <p>
-              Complemento mis habilidades técnicas con una sólida comprensión de los principios fundamentales de la seguridad de la información, incluyendo confidencialidad, integridad y disponibilidad. Esto me permite abordar los desafíos de seguridad de manera holística, considerando tanto los aspectos técnicos como los factores humanos y organizacionales.
-            </p>
-          </div>
         </div>
       </div>
     </section>

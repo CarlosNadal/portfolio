@@ -27,20 +27,20 @@ const Navbar = () => {
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <div className="flex items-center">
-            <a href="#home" className="text-accent-primary font-space-mono font-bold text-xl">
+            <a href="#home" className="glitch-advanced font-space-mono font-bold text-xl">
               <span className="terminal-text">&gt;_</span> Carlos<span className="text-accent-secondary">Nadal</span>
             </a>
           </div>
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <a href="#home" className="nav-link">Inicio</a>
-            <a href="#about" className="nav-link">Sobre Mí</a>
-            <a href="#skills" className="nav-link">Habilidades</a>
-            <a href="#projects" className="nav-link">Proyectos</a>
-            <a href="#education" className="nav-link">Formación</a>
-            <a href="#contact" className="nav-link">Contacto</a>
-            <a href="#" className="btn-secondary text-sm">Descargar CV</a>
+            <a href="#home" className="nav-link">Start</a>
+            <a href="#about" className="nav-link">About me</a>
+            <a href="#skills" className="nav-link">Skills</a>
+            <a href="#projects" className="nav-link">Projects</a>
+            <a href="#education" className="nav-link">Formation</a>
+            <a href="#contact" className="nav-link">Contact</a>
+            <a href="#" className="btn-secondary text-sm">Download CV</a>
           </div>
           
           {/* Mobile Menu Button */}
@@ -71,13 +71,13 @@ const Navbar = () => {
       {isMenuOpen && (
         <div className="md:hidden bg-secondary border-t border-tertiary">
           <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
-            <a href="#home" className="nav-link py-2" onClick={toggleMenu}>Inicio</a>
-            <a href="#about" className="nav-link py-2" onClick={toggleMenu}>Sobre Mí</a>
-            <a href="#skills" className="nav-link py-2" onClick={toggleMenu}>Habilidades</a>
-            <a href="#projects" className="nav-link py-2" onClick={toggleMenu}>Proyectos</a>
-            <a href="#education" className="nav-link py-2" onClick={toggleMenu}>Formación</a>
-            <a href="#contact" className="nav-link py-2" onClick={toggleMenu}>Contacto</a>
-            <a href="#" className="btn-secondary text-center py-2" onClick={toggleMenu}>Descargar CV</a>
+            <a href="#home" className="nav-link py-2" onClick={toggleMenu}>Home</a>
+            <a href="#about" className="nav-link py-2" onClick={toggleMenu}>About me</a>
+            <a href="#skills" className="nav-link py-2" onClick={toggleMenu}>Skills</a>
+            <a href="#projects" className="nav-link py-2" onClick={toggleMenu}>Projects</a>
+            <a href="#education" className="nav-link py-2" onClick={toggleMenu}>Education</a>
+            <a href="#contact" className="nav-link py-2" onClick={toggleMenu}>Contact</a>
+            <a href="#" className="btn-secondary text-center py-2" onClick={toggleMenu}>Download CV</a>
           </div>
         </div>
       )}

@@ -4,33 +4,51 @@ type CommandOutput = string[];
 
 const commands: Record<string, CommandOutput> = {
   help: [
-    'Comandos disponibles:',
-    '- help → muestra esta ayuda',
-    '- projects → lista proyectos destacados',
-    '- about → muestra perfil profesional',
-    '- contact → scroll al formulario de contacto',
-    '- clear → limpia la consola',
+    'Available commands:',
+    '- help → list available commands',
+    '- projects → list highlighted projects',
+    '- about → show professional profile',
+    '- contact → scroll to contact section',
+    '- origin → show personal story',
+    '- matrix → 🤫',
+    '- clear → clear the console',
   ],
-  projects: [
-    '🛠 Proyecto: Sistema de Detección de Amenazas por Correo',
+  projects: [ 
+    '🛠 Project: Email Threat Detection System',
     '🔗 GitHub: https://github.com/CarlosNadal/holbertonshcool-cybersecurity-final-proyect',
   ],
   about: [
-    '🙋‍♂️ Carlos Nadal - Analista de Ciberseguridad',
-    '💡 Recién graduado, especializado en detección de amenazas y protección de infraestructuras digitales.',
+    '🙋‍♂️ Carlos Nadal - Cybersecurity Analyst',
+    '💡 Recently graduated, specialized in threat detection and infrastructure protection.',
   ],
-  contact: ['📬 Redirigiendo a la sección de contacto...'],
+  contact: ['📬 Redirecting to contact section...'],
+  origin: [
+    'Initializing origin protocol...',
+    '',
+    'Name: Carlos Nadal',
+    'Background: 15 years in bakeries, factories, construction.',
+    'Event: Underwent spinal surgery. Life changed.',
+    'Action: Reskilled in cybersecurity at Holberton School.',
+    'Mission: Protect systems. Understand threats. Build defenses.',
+    '',
+    'Discipline > Talent. Always.',
+  ],
+  matrix: [
+    'Wake up, Carlos...',
+    'The matrix has you.',
+    'Follow the white rabbit.',
+    'Knock, knock... 💊',
+  ],
   clear: [],
 };
 
 const Terminal: React.FC = () => {
   const [history, setHistory] = useState<string[]>([
-    '👾 Bienvenido al terminal de Carlos Nadal. Escribí `help` para comenzar.',
+    '👾 Welcome to Carlos Nadal\'s terminal. Type `help` to begin.',
   ]);
   const [input, setInput] = useState<string>('');
   const terminalRef = useRef<HTMLDivElement>(null);
 
-  // Sonido tecleo (opcional)
   const playKeySound = () => {
     const audio = new Audio('./src/sounds/keystroke.wav');
     audio.volume = 0.2;
@@ -46,7 +64,7 @@ const Terminal: React.FC = () => {
       return;
     }
 
-    const output = commands[cleanCmd] || [`❌ Comando no reconocido: ${cleanCmd}`];
+    const output = commands[cleanCmd] || [`❌ Unknown command: ${cleanCmd}`];
     const formatted = [`> ${cmd}`, ...output];
     setHistory((prev) => [...prev, ...formatted]);
 
@@ -67,7 +85,9 @@ const Terminal: React.FC = () => {
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Tab') {
       e.preventDefault();
-      const match = Object.keys(commands).find((cmd) => cmd.startsWith(input.toLowerCase()));
+      const match = Object.keys(commands).find((cmd) =>
+        cmd.startsWith(input.toLowerCase())
+      );
       if (match) setInput(match);
     } else if (e.key.length === 1) {
       playKeySound();
@@ -101,7 +121,7 @@ const Terminal: React.FC = () => {
             onKeyDown={handleKeyDown}
             className="flex-1 bg-transparent border-none outline-none text-[var(--color-text-primary)] placeholder-[var(--color-text-secondary)]"
             autoFocus
-            placeholder="escribí un comando..."
+            placeholder="type a command..."
           />
         </form>
       </div>
