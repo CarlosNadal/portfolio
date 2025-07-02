@@ -46,7 +46,7 @@
   );
   z-index: 50;
   mix-blend-mode: overlay;
-  animation: scanlines 1.2s linear infinite;
+  animation: scanlines 0.5s linear infinite;
 }
 
 @keyframes scanlines {
@@ -155,7 +155,6 @@
 /* ========================
    ⌨️ Efecto Typing
 ======================== */
-
 @keyframes typing {
   from { width: 0 }
   to { width: 100% }

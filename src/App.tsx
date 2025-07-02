@@ -19,11 +19,9 @@ function App() {
       <ThemeToggle />
       <main>
         <Hero />
-        <Terminal />
         <About />
         <Skills />
         <Projects />
-        <Education />
         <Contact />
       </main>
       <Footer />

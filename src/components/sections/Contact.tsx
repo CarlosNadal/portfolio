@@ -22,14 +22,14 @@ const Contact = () => {
         }, 3500);
       })
       .catch(() => {
-        alert('Hubo un error enviando el mensaje.');
+        alert('There was an error sending the message.');
       });
   };
 
   return (
     <section id="contact" className="section bg-secondary">
       <div className="container mx-auto max-w-3xl">
-        <h2 className="text-center mb-12">Contacto</h2>
+        <h2 className="text-center mb-12">Contact</h2>
 
         <form
           onSubmit={handleSubmit}
@@ -59,8 +59,8 @@ const Contact = () => {
           <textarea
             name="message"
             required
-            rows="5"
-            placeholder="> Escribí tu mensaje acá..."
+            rows= '5'
+            placeholder="> Leave your message here..."
             className="w-full bg-transparent border border-[var(--color-accent-primary)] px-2 py-1 outline-none placeholder-[var(--color-text-secondary)] rounded"
           ></textarea>
 
@@ -68,7 +68,7 @@ const Contact = () => {
             type="submit"
             className="btn-primary glitch mt-6 block ml-auto font-fira-code relative overflow-hidden"
           >
-            Enviar Mensaje
+            Send message
           </button>
 
           {submitted && (

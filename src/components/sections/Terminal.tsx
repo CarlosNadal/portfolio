@@ -10,7 +10,6 @@ const commands: Record<string, CommandOutput> = {
     '- about → show professional profile',
     '- contact → scroll to contact section',
     '- origin → show personal story',
-    '- matrix → 🤫',
     '- clear → clear the console',
   ],
   projects: [ 
@@ -33,18 +32,12 @@ const commands: Record<string, CommandOutput> = {
     '',
     'Discipline > Talent. Always.',
   ],
-  matrix: [
-    'Wake up, Carlos...',
-    'The matrix has you.',
-    'Follow the white rabbit.',
-    'Knock, knock... 💊',
-  ],
   clear: [],
 };
 
 const Terminal: React.FC = () => {
   const [history, setHistory] = useState<string[]>([
-    '👾 Welcome to Carlos Nadal\'s terminal. Type `help` to begin.',
+    '👾 Welcome to the Matrix. Type `help` to begin.',
   ]);
   const [input, setInput] = useState<string>('');
   const terminalRef = useRef<HTMLDivElement>(null);

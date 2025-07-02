@@ -40,7 +40,7 @@ const Navbar = () => {
             <a href="#projects" className="nav-link">Projects</a>
             <a href="#education" className="nav-link">Formation</a>
             <a href="#contact" className="nav-link">Contact</a>
-            <a href="#" className="btn-secondary text-sm">Download CV</a>
+            <a href="./src/assets/Carlos-NadalCV.pdf" className="btn-secondary text-sm">Download CV</a>
           </div>
           
           {/* Mobile Menu Button */}
@@ -75,7 +75,6 @@ const Navbar = () => {
             <a href="#about" className="nav-link py-2" onClick={toggleMenu}>About me</a>
             <a href="#skills" className="nav-link py-2" onClick={toggleMenu}>Skills</a>
             <a href="#projects" className="nav-link py-2" onClick={toggleMenu}>Projects</a>
-            <a href="#education" className="nav-link py-2" onClick={toggleMenu}>Education</a>
             <a href="#contact" className="nav-link py-2" onClick={toggleMenu}>Contact</a>
             <a href="#" className="btn-secondary text-center py-2" onClick={toggleMenu}>Download CV</a>
           </div>
