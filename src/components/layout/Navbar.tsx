@@ -38,7 +38,6 @@ const Navbar = () => {
             <a href="#about" className="nav-link">About me</a>
             <a href="#skills" className="nav-link">Skills</a>
             <a href="#projects" className="nav-link">Projects</a>
-            <a href="#education" className="nav-link">Formation</a>
             <a href="#contact" className="nav-link">Contact</a>
             <a href="./src/assets/Carlos-NadalCV.pdf" className="btn-secondary text-sm">Download CV</a>
           </div>
